@@ -10,4 +10,10 @@ Implementation :
   "TSLA". The map's value will be a 3 element std::array of std::lists which will represnt stock price history, the trading volume and even
   the setiment scores for the companies. The program will read the stocks data from an external file named "stocks_data.txt", which will 
   contain about at least 100 lines of stock data entries. Each line includes a company ticker, current price, trading volume, 
-  and even the sentiment score. 
+  and even the sentiment score. Within the simulation, the program will go through 25 time periods, updating the stock values randomly to
+  make it seem like a real work market. At the time steps, the sim will then print a summary on each stock.
+
+Simulated Events :
+- The simulation will focus on three main market events that could occur during each time period. The first is price fluctuation, its where 
+  a companies stock rises and dips based on the market activity. The second is market movement, it consists of sudden spikes or drops that
+  can occur from external factors. And the third is sentiment shift, its where a investor can affect the stocks for companies.
