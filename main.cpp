@@ -75,3 +75,23 @@ cout << "\nSimulation complete after 25 time periods." << endl;
 return 0;
 }
 
+// Define the simulate_day function
+// This function simulates daily stock market changes
+// For each company:
+// Randomly choose whether to remove or update stock data
+// If even day ---> remove last PRICE reading
+// If odd day ---> remove last VOLUME reading
+// Print which data was modified
+// Print placeholder for adding/updating new stock data later
+void simulate_day(map<string, array<list<double>, 3>> &market, int day) {
+cout << "Time Period " << day << " Updates:\n";
+
+for (auto &entry : market) {
+bool didRemove = false;
+
+// Even days remove price
+if (day % 2 == 0) {
+if (!entry.second[0].empty()) {
+entry.second[0].pop_back();
+cout << "  " << entry.first << ": removed last PRICE reading.\n";
+didRemove = true;
