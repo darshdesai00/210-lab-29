@@ -94,4 +94,24 @@ if (day % 2 == 0) {
 if (!entry.second[0].empty()) {
 entry.second[0].pop_back();
 cout << "  " << entry.first << ": removed last PRICE reading.\n";
-didRemove = true;
+didRemove = true;}
+}
+// Odd days remove volume
+else {
+if (!entry.second[1].empty()) {
+entry.second[1].pop_back();
+cout << "  " << entry.first << ": removed last VOLUME reading.\n";
+didRemove = true;}
+}
+
+// If no data left to remove
+if (!didRemove) {
+cout << "  " << entry.first << ": nothing to remove (list empty).\n";
+}
+
+// Placeholder for later labs (Lab 30)
+cout << "    [will be implemented later]\n";
+}
+
+cout << endl;
+}
