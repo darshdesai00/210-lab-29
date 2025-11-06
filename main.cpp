@@ -42,11 +42,10 @@ while (fin >> ticker >> price >> volume >> sentiment) {
 market[ticker][0].push_back(price);
 market[ticker][1].push_back(volume);
 market[ticker][2].push_back(sentiment);
-}
+    }
 
 // Close the file
 fin.close();
-}
 
 // Display the initial state of the market
 // For each company:
@@ -54,12 +53,25 @@ fin.close();
 cout << "Initial Market State:\n";
 for (auto &entry : market) {
 cout << entry.first
- << " | Price: " << entry.second[0].back()
- << " | Volume: " << entry.second[1].back()
- << " | Sentiment: " << entry.second[2].back()
- << endl;
+<< " | Price: " << entry.second[0].back()
+<< " | Volume: " << entry.second[1].back()
+<< " | Sentiment: " << entry.second[2].back()
+<< endl;
 }
 
 // outputs start of simulation
 cout << "\n--- Begin Simulation ---\n" << endl;
+
+// Below beginss the simulation loop
+// For 25 time periods:
+// Call the simulate_day() function each time step
+for (int day = 1; day <= 25; day++) {
+simulate_day(market, day);
+}
+
+// Display end message
+cout << "\nSimulation complete after 25 time periods." << endl;
+
+return 0;
+}
 
