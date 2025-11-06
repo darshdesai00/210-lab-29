@@ -17,3 +17,5 @@ Simulated Events :
 - The simulation will focus on three main market events that could occur during each time period. The first is price fluctuation, its where 
   a companies stock rises and dips based on the market activity. The second is market movement, it consists of sudden spikes or drops that
   can occur from external factors. And the third is sentiment shift, its where a investor can affect the stocks for companies.
+  During any moment, small jumps, large adjusments, or even sentiment reversals can all take place. All of these random events can help to
+  show how unpredictiable the market can be and quick trends can move.
