@@ -1,0 +1,10 @@
+Testing Phase — Unit Test Documentation
+==========================================
+
+Description of Unit Testing:
+
+- For this lab the main function that is going to be tested is this :
+ void simulate_day(map<string, array<list<double>, 3>> &market, int day)
+
+The function above is actually responsible for a whole lot, it manages tasks like updating stock
+market data each dayy in the sim. 
