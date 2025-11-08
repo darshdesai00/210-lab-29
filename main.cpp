@@ -10,6 +10,8 @@
 #include <list>
 #include <string>
 #include <cstdlib>
+#include <iomanip>   // for formatting
+#include <cstdlib>   // for rand()
 using namespace std;
 
 // Func prototype
@@ -90,42 +92,26 @@ double marketTotal = 0;
 int marketCount = 0;
 
 cout << "  Companies tracked today:\n";
-
 for (auto &entry : market) {
-double changePercent = (rand() % 401 - 200) / 10000.0; // Added a random daily change 
+double changePercent = (rand() % 401 - 200) / 10000.0; // Added a random daily change
 
-// Even days remove price
-if (day % 2 == 0) {
 if (!entry.second[0].empty()) {
-entry.second[0].pop_back();
-cout << "  " << entry.first << ": removed last PRICE reading.\n";
-didRemove = true;}
-}
-// Odd days remove volume
-else {
-if (!entry.second[1].empty()) {
-entry.second[1].pop_back();
-cout << "  " << entry.first << ": removed last VOLUME reading.\n";
-didRemove = true;}
+double lastPrice = entry.second[0].back();
+double newPrice = lastPrice * (1 + changePercent);
+entry.second[0].push_back(newPrice); // stores the updated price
 }
 
-// If no data left to remove
-if (!didRemove) {
-cout << "  " << entry.first << ": nothing to remove (list empty).\n";
+cout << "    - " << entry.first 
+<< " | Price: $" << fixed << setprecision(2) 
+<< entry.second[0].back() << endl;
+
+// Track running total and count for average calculation           
+marketTotal += entry.second[0].back();
+marketCount++;
 }
 
-// Added a new feature to be able to display the average prices
-double total = 0;
-int count = 0;
-for (double p : entry.second[0]){
-total += p;
-count++;
-}
+// Compute and display the average market price across all companies in the data
+double marketAverage = (marketCount > 0) ? marketTotal / marketCount : 0;
 
-double avgPrice = (count > 0) ? total / count : 0; 
-cout << "    Average price now: " << avgPrice << endl;
-cout << "    [Alpha Version Verified: structure + file I/O working]\n";
-}
 
-    cout << endl;
 }
