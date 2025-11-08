@@ -9,6 +9,7 @@
 #include <array>
 #include <list>
 #include <string>
+#include <cstdlib>
 using namespace std;
 
 // Func prototype
@@ -84,10 +85,14 @@ return 0;
 // Print which data was modified
 // Print placeholder for adding/updating new stock data later
 void simulate_day(map<string, array<list<double>, 3>> &market, int day) {
-cout << "Time Period " << day << " Updates:\n";
+cout << " Day " << day << " Summary:\n";
+double marketTotal = 0;
+int marketCount = 0;
+
+cout << "  Companies tracked today:\n";
 
 for (auto &entry : market) {
-bool didRemove = false;
+double changePercent = (rand() % 401 - 200) / 10000.0; // Added a random daily change 
 
 // Even days remove price
 if (day % 2 == 0) {
