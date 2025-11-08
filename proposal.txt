@@ -6,7 +6,7 @@ Project Overview :
 
 Implementation : 
 
-- In this program I plan on using a "std::ma" where each key is basically represented as a company ticker symbol for examlpe "AAPL" or 
+- In this program I plan on using a "std::map" where each key is basically represented as a company ticker symbol for examlpe "AAPL" or 
   "TSLA". The map's value will be a 3 element std::array of std::lists which will represnt stock price history, the trading volume and even
   the setiment scores for the companies. The program will read the stocks data from an external file named "stocks_data.txt", which will 
   contain about at least 100 lines of stock data entries. Each line includes a company ticker, current price, trading volume, 
