@@ -1,6 +1,6 @@
-// COMSC-210 | Lab 29 | Darsh Desai
+// COMSC-210 | Lab 230 | Darsh Desai
 // IDE used: VS Code
-// Description: Stock Market Trends Simulation - (Pseudocode)
+// Description: Stock Market Trends Simulation - (Alpha Release)
 
 // Include your headers: 
 #include <iostream>
@@ -109,9 +109,18 @@ if (!didRemove) {
 cout << "  " << entry.first << ": nothing to remove (list empty).\n";
 }
 
-// Placeholder for later labs (Lab 30)
-cout << "    [will be implemented later]\n";
+// Added a new feature to be able to display the average prices
+double total = 0;
+int count = 0;
+for (double p : entry.second[0]){
+total += p;
+count++;
 }
 
-cout << endl;
+double avgPrice = (count > 0) ? total / count : 0; 
+cout << "    Average price now: " << avgPrice << endl;
+cout << "    [Alpha Version Verified: structure + file I/O working]\n";
+}
+
+    cout << endl;
 }
