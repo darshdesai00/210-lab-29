@@ -7,4 +7,27 @@ Description of Unit Testing:
  void simulate_day(map<string, array<list<double>, 3>> &market, int day)
 
 The function above is actually responsible for a whole lot, it manages tasks like updating stock
-market data each dayy in the sim. 
+market data each dayy in the sim. It also applies random price changes to each companies stock 
+price and also displays the new prices, along with the daily market avg. 
+
+The main purpose of this unit test is to make sure that:
+- The functions correctly loop through each company 
+- Prices are updated safely and at a consistent level
+- No crashes are happening when displaying data
+- The avg market price is correctly displayed
+
+=============================================
+Unit Test Driver Code :
+
+#include <iostream>
+#include <map>
+#include <array>
+#include <list>
+#include <string>
+using namespace std;
+
+// main function
+void simulate_day(map<string, array<list<double>, 3>> &market, int day);
+
+// Main Test Driver
+int main() 
