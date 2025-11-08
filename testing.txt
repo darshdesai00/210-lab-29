@@ -17,13 +17,16 @@ The main purpose of this unit test is to make sure that:
 - The avg market price is correctly displayed
 
 =============================================
-Unit Test Driver Code :
 
+Unit Test Driver Code :
+---------------------------------------------
 #include <iostream>
 #include <map>
 #include <array>
 #include <list>
 #include <string>
+#include <cstdlib>
+#include <iomanip>
 using namespace std;
 
 // main function
@@ -38,22 +41,53 @@ map<string, array<list<double>, 3>> market;
 // Company 1 ("APPL") ; APPLE
 market["AAPL"][0].push_back(190.25);  // price
 market["AAPL"][1].push_back(1250000); // volume
-market["AAL"][2].push_back(80); // sentiment
+market["AAAL"][2].push_back(80); // sentiment
 
 // Company 2 ("TSLA") ; TESLA 
-market["TSLA"][0].push_back(245.80);
-market["TSLA"][1].push_back(1600000);
-market[TSLA"][2].push_back(77);
+market["TSLA"][0].push_back(245.80); // price 
+market["TSLA"][1].push_back(1600000); // volume
+market["TSLA"][2].push_back(77); // sentiment
 
 cout << "----- UNIT TEST: simulate_day() -----\n";
 simulate_day(market, 1);  // Simulates Day 1
 simulate_day(market, 2);  // Simulates Day 2
 cout << "------------------------------------\n";
 
-return
+return 0;
 
-// Sample of simulate_day() 
+// Sample of simulate_day() for testing 
 void simulate_day(map<string, array<list<double>, 3>> &market, int day) {
 cout << " Day " << day << " Summary:\n";
-double marketTotal = 0;
-intt marketCount = 0;
+
+double marketTotal = 0; // calculate total market value
+int marketCount = 0; // count total number of companies
+
+cout << "  Companies tracked today:\n";
+
+// loop through each company in the market
+for (auto &entry : market) {
+// generate random market change
+double changePercent = (rand() % 401 - 200) / 10000.0; // ±2%
+
+if (!entry.second[0].empty()) {
+double lastPrice = entry.second[0].back();
+double newPrice = lastPrice * (1 + changePercent);
+entry.second[0].push_back(newPrice);
+}
+
+// Display company name, price, and sentiment
+cout << "    - " << setw(5) << entry.first
+<< " | Price: $" << fixed << setprecision(2)
+<< entry.second[0].back()
+<< " | Sentiment: " << setw(3)
+<< entry.second[2].back() << endl;
+
+//
+marketTotal += entry.second[0].back();
+marketCount++;
+}
+
+double avgPrice = (marketCount > 0) ? marketTotal / marketCount : 0;
+cout << "  Average stock price today: $" << fixed << setprecision(2)
+<< avgPrice << endl << endl;
+}
