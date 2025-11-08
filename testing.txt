@@ -31,3 +31,29 @@ void simulate_day(map<string, array<list<double>, 3>> &market, int day);
 
 // Main Test Driver
 int main() 
+
+//create small test data with just 2 companies
+map<string, array<list<double>, 3>> market;
+
+// Company 1 ("APPL") ; APPLE
+market["AAPL"][0].push_back(190.25);  // price
+market["AAPL"][1].push_back(1250000); // volume
+market["AAL"][2].push_back(80); // sentiment
+
+// Company 2 ("TSLA") ; TESLA 
+market["TSLA"][0].push_back(245.80);
+market["TSLA"][1].push_back(1600000);
+market[TSLA"][2].push_back(77);
+
+cout << "----- UNIT TEST: simulate_day() -----\n";
+simulate_day(market, 1);  // Simulates Day 1
+simulate_day(market, 2);  // Simulates Day 2
+cout << "------------------------------------\n";
+
+return
+
+// Sample of simulate_day() 
+void simulate_day(map<string, array<list<double>, 3>> &market, int day) {
+cout << " Day " << day << " Summary:\n";
+double marketTotal = 0;
+intt marketCount = 0;
