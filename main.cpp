@@ -87,9 +87,18 @@ return 0;
 // Print which data was modified
 // Print placeholder for adding/updating new stock data later
 void simulate_day(map<string, array<list<double>, 3>> &market, int day) {
+cout << "==============================" << endl;
 cout << " Day " << day << " Summary:\n";
+cout << "==============================" << endl;
+
 double marketTotal = 0;
 int marketCount = 0;
+
+cout << left << setw(8) << "Ticker" 
+<< setw(12) << "Price ($)" 
+<< setw(12) << "Sentiment" << endl;
+cout << "------------------------------------" << endl;
+
 
 cout << "  Companies tracked today:\n";
 for (auto &entry : market) {
@@ -105,6 +114,12 @@ cout << "    - " << entry.first
 << " | Price: $" << fixed << setprecision(2) 
 << entry.second[0].back() << endl;
 
+cout << left << setw(8) << entry.first
+<< "$" << setw(11) << fixed << setprecision(2) << entry.second[0].back()
+<< setw(10) << entry.second[2].back()
+<< endl;
+
+
 // Track running total and count for average calculation           
 marketTotal += entry.second[0].back();
 marketCount++;
@@ -113,5 +128,10 @@ marketCount++;
 // Compute and display the average market price across all companies in the data
 double marketAverage = (marketCount > 0) ? marketTotal / marketCount : 0;
 
+cout << "------------------------------------" << endl;
+cout << "Average Price: $" << fixed << setprecision(2) << marketAverage << endl;
+cout << "Companies Tracked: " << marketCount << endl;
+cout << "Market Trend: Stable for now" << endl;
+cout << endl;
 
 }
