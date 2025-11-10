@@ -22,6 +22,10 @@ using namespace std;
 void simulate_day(map<string, array<list<double>, 3>> &market, int day);
 
 int main() {
+
+// Initialize random seed so prices and sentiment actually vary each run    
+srand(time(0));
+
 // Initialize a map to store company information
 // Each key = company ticker (e.g., AAPL)
 // Each value = array with 3 lists for [price, volume, sentiment]
@@ -123,14 +127,15 @@ double lastSentiment = entry.second[2].back();
 double sentimentChange = (rand() % 11 - 5);
 double newSentiment = lastSentiment + sentimentChange;
 
- // Between 0 and 100
- if (newSentiment > 100) newSentiment = 100;
-// where we left off .....
-
+// Between 0 and 100
+if (newSentiment > 100) newSentiment = 100;
+if (newSentiment < 0) newSentiment = 0;
+entry.second[2].push_back(newSentiment);
+}
 
 cout << left << setw(8) << entry.first
 << "$" << setw(11) << fixed << setprecision(2) << entry.second[0].back()
-<< setw(10) << entry.second[2].back()
+<< setw(10) << fixed << setprecision(1) << entry.second[2].back()
 << endl;
 
 // Track running total and count for average calculation           
