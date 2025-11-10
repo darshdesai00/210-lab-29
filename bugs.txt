@@ -1,0 +1,10 @@
+1. One of the errors I had encountered was timestamp printing it kept on weirdly looping through days and it started to stacke outputs.
+Fix: Added a clear “==============================” separator above each date for readability.
+
+2. I remember at one point in time that results were all identical each time I ran the program until I figured out the easiest mistake.
+Fix: Realized I hadn’t seeded the random generator. Added `srand(time(0));` in main().
+
+3. I was running the code over and over again after and once it looped through several days, the sentiment never changed and it was always the same for each day.
+Fix: Added random changes per day, with clamping between 0–100 to ensure it changed.
+
+4. When I intially opened my main.cpp and tried to compile I had kept on getting errors 
