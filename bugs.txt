@@ -22,4 +22,15 @@ Fix: Removed the first “entry.first” before setw(), so it only prints once.
 New line:
     cout << setw(6) << left << entry.first
 
-6.
+6. While testing in VS Code’s terminal, older compiled versions of my code were still running even after changes.
+Fix: Learned to always remove the previous compiled file using rm main before recompiling with g++ -std=c++11 main.cpp -o main.
+
+7. Early versions let sentiment go below 0 or above 100, which looked unrealistic.
+Fix: Added clamping logic:
+if (newSentiment > 100) newSentiment = 100;
+if (newSentiment < 0) newSentiment = 0;
+
+8. The random price changes were so small that prices looked static between days.
+Fix: Expanded the range from 0.5% to 2% using (rand() % 401 - 200) / 10000.0 to make changes visible.
+
+9. 
