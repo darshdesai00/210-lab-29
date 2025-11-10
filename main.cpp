@@ -50,7 +50,7 @@ while (fin >> ticker >> price >> volume >> sentiment) {
 market[ticker][0].push_back(price);
 market[ticker][1].push_back(volume);
 market[ticker][2].push_back(sentiment);
-    }
+}
 
 // Close the file
 fin.close();
@@ -62,12 +62,10 @@ cout << "==============================\n";
 cout << "Initial Market State:\n";
 cout << "==============================\n";
 for (auto &entry : market) {
-cout << entry.first
-<< setw(6) << left << entry.first
+cout << setw(6) << left << entry.first
 << " | Price: $" << fixed << setprecision(2) << entry.second[0].back()
 << " | Volume: " << entry.second[1].back()
-<< " | Sentiment: " << entry.second[2].back() << endl;
-    
+<< " | Sentiment: " << entry.second[2].back() << endl;    
 }
 
 // outputs start of simulation
@@ -123,8 +121,8 @@ entry.second[0].push_back(newPrice); // stores the updated price
 
 if (!entry.second[2].empty()) {
 double lastSentiment = entry.second[2].back();
-// Random daily sentiment change between -5 and +5 points
-double sentimentChange = (rand() % 11 - 5);
+// Random daily sentiment change
+double sentimentChange = (rand() % 21 - 10) / 10.0; // ±1.0 range
 double newSentiment = lastSentiment + sentimentChange;
 
 // Between 0 and 100
