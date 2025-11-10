@@ -1,0 +1,47 @@
+1. One of the errors I had encountered was timestamp printing it kept on weirdly looping through days and it started to stacke outputs.
+Fix: Added a clear “==============================” separator above each date for readability.
+
+2. I remember at one point in time that results were all identical each time I ran the program until I figured out the easiest mistake.
+Fix: Realized I hadn’t seeded the random generator. Added `srand(time(0));` in main().
+
+3. I was running the code over and over again after and once it looped through several days, the sentiment never changed and it was always the same for each day.
+Fix: Added random changes per day, with clamping between 0–100 to ensure it changed.
+
+4. I remember vividly at some point in my coding process I opened my main.cpp and tried to compile I had kept on getting errors to open and read from
+stocks_data.txt. The simulation would not start because the file could not be found or opened.
+Fix: Added an input file-open check and an error message inside main():
+    if (!fin) {
+    cerr << "Error: could not open stocks_data.txt" << endl;
+    return 1;
+    }
+this told me if the file was missing or misplaced as a safety pracaution 
+
+5. When displaying the initial market state, each company name printed twice (e.g., AAPLAAPL, AMZNAMZN).
+Cause: I accidentally printed the ticker twice — once directly and once again inside setw() formatting.
+Fix: Removed the first “entry.first” before setw(), so it only prints once.
+New line:
+    cout << setw(6) << left << entry.first
+
+6. While testing in VS Code’s terminal, older compiled versions of my code were still running even after changes.
+Fix: Learned to always remove the previous compiled file using rm main before recompiling with g++ -std=c++11 main.cpp -o main.
+
+7. Early versions let sentiment go below 0 or above 100, which looked unrealistic.
+Fix: Added clamping logic:
+if (newSentiment > 100) newSentiment = 100;
+if (newSentiment < 0) newSentiment = 0;
+
+8. The random price changes were so small that prices looked static between days.
+Fix: Expanded the range from 0.5% to 2% using (rand() % 401 - 200) / 10000.0 to make changes visible.
+
+9. At one point, the simulation summary was printing the average and company count twice per day.
+Fix: Realized I had a duplicate call to simulate_day() left over from testing — removed the extra function call so each day only printed once.
+
+10. When I went to run my code, I accidentally used rand() % 401 - 200 / 10000.0 without parentheses, which caused C++ to apply the division
+first. This made my stock prices change way too drastically some even went negative which wasnt good at all.
+Fix: Wrapped the calculation in parentheses like this: double changePercent = (rand() % 401 - 200) / 10000.0;
+This ensured the math order was correct and prices only fluctuated within ±2%.
+
+11. One of my most annoying bugs was having to deal with source file because some how through out my git push and editing code 
+the file had been corrupted with binary data and messed my whole tempo up and really threw me off guard.
+Fix: Well at first I was trying everything from recompiling to reseting my laptop to even moving files and nothing worked so then finally
+I had deleted my corrupted main.cpp and replaced it with a brand new one and that had fixed my errors and pushed the code to git. 
