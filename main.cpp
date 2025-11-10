@@ -110,15 +110,10 @@ double newPrice = lastPrice * (1 + changePercent);
 entry.second[0].push_back(newPrice); // stores the updated price
 }
 
-cout << "    - " << entry.first 
-<< " | Price: $" << fixed << setprecision(2) 
-<< entry.second[0].back() << endl;
-
 cout << left << setw(8) << entry.first
 << "$" << setw(11) << fixed << setprecision(2) << entry.second[0].back()
 << setw(10) << entry.second[2].back()
 << endl;
-
 
 // Track running total and count for average calculation           
 marketTotal += entry.second[0].back();
