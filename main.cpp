@@ -1,6 +1,6 @@
-// COMSC-210 | Lab 230 | Darsh Desai
+// COMSC-210 | Lab 31 | Darsh Desai
 // IDE used: VS Code
-// Description: Stock Market Trends Simulation - (Alpha Release)
+// Description: Stock Market Trends Simulation - (Beta Release)
 
 // Include your headers: 
 #include <iostream>
@@ -10,8 +10,9 @@
 #include <list>
 #include <string>
 #include <cstdlib>
-#include <iomanip>   // for formatting
-#include <cstdlib>   // for rand()
+#include <iomanip>   
+#include <cstdlib>   
+#include <ctime> // For timestamps
 using namespace std;
 
 // Func prototype
@@ -53,17 +54,20 @@ fin.close();
 // Display the initial state of the market
 // For each company:
 // Print ticker, latest price, volume, and sentiment
+cout << "==============================\n";
 cout << "Initial Market State:\n";
+cout << "==============================\n";
 for (auto &entry : market) {
 cout << entry.first
-<< " | Price: " << entry.second[0].back()
+<< setw(6) << left << entry.first
+<< " | Price: $" << fixed << setprecision(2) << entry.second[0].back()
 << " | Volume: " << entry.second[1].back()
-<< " | Sentiment: " << entry.second[2].back()
-<< endl;
+<< " | Sentiment: " << entry.second[2].back() << endl;
+    
 }
 
 // outputs start of simulation
-cout << "\n--- Begin Simulation ---\n" << endl;
+cout << "\n--- Begin Simulation (Beta Phase) ---\n" << endl;
 
 // Below beginss the simulation loop
 // For 25 time periods:
@@ -89,7 +93,12 @@ return 0;
 void simulate_day(map<string, array<list<double>, 3>> &market, int day) {
 cout << "==============================" << endl;
 cout << " Day " << day << " Summary:\n";
-cout << "==============================" << endl;
+
+// Added in timestamps for each simulated day
+time_t now = time(0);
+cout << "Date: " << ctime(&now);
+cout << "==============================\n";
+
 
 double marketTotal = 0;
 int marketCount = 0;
