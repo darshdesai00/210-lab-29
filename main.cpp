@@ -99,15 +99,13 @@ time_t now = time(0);
 cout << "Date: " << ctime(&now);
 cout << "==============================\n";
 
-
-double marketTotal = 0;
-int marketCount = 0;
-
 cout << left << setw(8) << "Ticker" 
 << setw(12) << "Price ($)" 
 << setw(12) << "Sentiment" << endl;
 cout << "------------------------------------" << endl;
 
+double marketTotal = 0;
+int marketCount = 0;
 
 cout << "  Companies tracked today:\n";
 for (auto &entry : market) {
@@ -118,6 +116,17 @@ double lastPrice = entry.second[0].back();
 double newPrice = lastPrice * (1 + changePercent);
 entry.second[0].push_back(newPrice); // stores the updated price
 }
+
+if (!entry.second[2].empty()) {
+double lastSentiment = entry.second[2].back();
+// Random daily sentiment change between -5 and +5 points
+double sentimentChange = (rand() % 11 - 5);
+double newSentiment = lastSentiment + sentimentChange;
+
+ // Between 0 and 100
+ if (newSentiment > 100) newSentiment = 100;
+// where we left off .....
+
 
 cout << left << setw(8) << entry.first
 << "$" << setw(11) << fixed << setprecision(2) << entry.second[0].back()
